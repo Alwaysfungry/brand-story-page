@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YEZI — For Every Stage, Every Age</title>
+  <style>
+    :root {
+      /* Premium & Organic Editorial Palette */
+      --yezi-canvas: #fbfbf7;       /* 暖麻白：温润、有呼吸感的底色 */
+      --yezi-paper: #ffffff;        /* 纯净白：用于打破沉闷的内页卡片 */
+      --yezi-ink: #0c1611;          /* 深苔黑：极高对比度但带有自然温度的墨色 */
+      --yezi-text: #2c3831;         /* 灰苔绿：柔和耐看的正文字体色 */
+      --yezi-muted: #627067;        /* 暮色绿：用于次级标签与叙事旁白 */
+      
+      /* Primary Brand Tone */
+      --yezi-moss-dark: #123321;    /* 奢华深苔绿：代表时间的沉淀与品质 */
+      --yezi-moss-base: #1b4d32;    /* 核心叶绿 */
+      --yezi-amber: #e5a93b;        /* 柔和琥珀金：如黄昏阳光，注入活力与温度 */
+      --yezi-amber-soft: #fcf4e3;   /* 阳光浴：极其内敛的温暖高光 */
+      
+      /* Structural System */
+      --line-subtle: rgba(12, 22, 17, 0.06);
+      --line-editorial: rgba(12, 22, 17, 0.12);
+      --radius-premium: 24px;       /* 更加克制、高级的圆角弧度 */
+      --radius-button: 999px;
+      --max-width: 1160px;
+      --font-editorial: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--yezi-canvas);
+    }
+
+    body {
+      min-width: 320px;
+      font-family: var(--font-editorial);
+      color: var(--yezi-text);
+      background: var(--yezi-canvas);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 64px));
+      margin-inline: auto;
+    }
+
+    /* --- Navigation --- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--line-subtle);
+      background: rgba(251, 251, 247, 0.85);
+      backdrop-filter: blur(20px);
+    }
+
+    .nav-inner {
+      width: min(var(--max-width), calc(100% - 64px));
+      min-height: 80px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: var(--yezi-ink);
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--yezi-muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--yezi-moss-base); }
+
+    /* --- Hero Section --- */
+    .hero {
+      min-height: calc(100vh - 80px);
+      display: grid;
+      align-items: center;
+      padding: 80px 0;
+      border-bottom: 1px solid var(--line-subtle);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-tagline {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--yezi-moss-base);
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      color: var(--yezi-ink);
+      font-size: clamp(3rem, 5.5vw, 5.2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      text-wrap: balance;
+    }
+
+    .hero-copy {
+      max-width: 520px;
+      margin-top: 28px;
+      color: var(--yezi-text);
+      font-size: clamp(1.1rem, 1.4vw, 1.25rem);
+      font-weight: 450;
+      line-height: 1.68;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-top: 44px;
+    }
+
+    /* --- Buttons --- */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 0 32px;
+      border: 1px solid var(--yezi-moss-dark);
+      border-radius: var(--radius-button);
+      background: var(--yezi-moss-dark);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .button:hover {
+      background: var(--yezi-moss-base);
+      border-color: var(--yezi-moss-base);
+      transform: translateY(-1px);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--yezi-moss-dark);
+      border-color: var(--line-editorial);
+    }
+
+    .button.secondary:hover {
+      background: rgba(18, 51, 33, 0.04);
+      border-color: var(--yezi-moss-dark);
+    }
+
+    /* --- Featured Manifest Card --- */
+    .manifest-card {
+      padding: 50px;
+      border: 1px solid var(--line-editorial);
+      border-radius: var(--radius-premium);
+      background: var(--yezi-paper);
+      box-shadow: 0 20px 50px rgba(12, 22, 17, 0.03);
+    }
+
+    .manifest-quote {
+      color: var(--yezi-ink);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+
+    .manifest-list {
+      margin-top: 40px;
+      list-style: none;
+      display: grid;
+      gap: 20px;
+    }
+
+    .manifest-list li {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--yezi-text);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .manifest-list li::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--yezi-amber);
+      flex-shrink: 0;
+    }
+
+    .manifest-meta {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line-subtle);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--yezi-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* --- Sections General --- */
+    section {
+      padding: 120px 0;
+      border-bottom: 1px solid var(--line-subtle);
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 64px;
+    }
+
+    .section-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--yezi-muted);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      color: var(--yezi-ink);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+    }
+
+    .section-lede {
+      margin-top: 24px;
+      color: var(--yezi-muted);
+      font-size: clamp(1.1rem, 1.3vw, 1.25rem);
+      font-weight: 450;
+      line-height: 1.65;
+    }
+
+    /* --- Belief Section --- */
+    .belief {
+      background: linear-gradient(180deg, var(--yezi-canvas) 0%, #f6f6f0 100%);
+    }
+
+    .belief-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+      align-items: stretch;
+    }
+
+    .belief-main {
+      padding: 60px;
+      background: var(--yezi-paper);
+      border: 1px solid var(--line-editorial);
+      border-radius: var(--radius-premium);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .belief-statement {
+      color: var(--yezi-ink);
+      font-size: clamp(1.5rem, 2.2vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+    }
+
+    .belief-p {
+      margin-top: 32px;
+      color: var(--yezi-text);
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .belief-badge {
+      margin-top: 40px;
+      align-self: flex-start;
+      padding: 10px 20px;
+      background: var(--yezi-amber-soft);
+      border-radius: 999px;
+      color: #926413;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .belief-aside {
+      padding: 60px 40px;
+      background: var(--yezi-moss-dark);
+      color: rgba(255, 255, 255, 0.85);
+      border-radius: var(--radius-premium);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .belief-aside p {
+      font-size: 1.15rem;
+      font-weight: 450;
+      line-height: 1.75;
+      letter-spacing: -0.01em;
+    }
+
+    .belief-aside-accent {
+      width: 40px;
+      height: 4px;
+      background: var(--yezi-amber);
+      border-radius: 2px;
+      margin-top: 40px;
+    }
+
+    /* --- Principles Section --- */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .principle-card {
+      padding: 48px 40px;
+      background: var(--yezi-paper);
+      border: 1px solid var(--line-subtle);
+      border-radius: var(--radius-premium);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .principle-card:hover {
+      border-color: var(--yezi-moss-base);
+      box-shadow: 0 30px 70px rgba(12, 22, 17, 0.04);
+      transform: translateY(-4px);
+    }
+
+    .principle-num {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--yezi-amber);
+      font-family: monospace;
+      letter-spacing: 0.1em;
+    }
+
+    .principle-card h3 {
+      margin-top: 24px;
+      color: var(--yezi-ink);
+      font-size: 1.6rem;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+    }
+
+    .principle-card p {
+      margin-top: 16px;
+      color: var(--yezi-muted);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    /* --- Play Worlds Section --- */
+    .worlds-layout {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 64px;
+    }
+
+    .worlds-layout .section-head {
+      position: sticky;
+      top: 140px;
+    }
+
+    .world-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .world-card {
+      padding: 40px;
+      background: var(--yezi-paper);
+      border: 1px solid var(--line-subtle);
+      border-radius: var(--radius-premium);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 300px;
+      transition: border-color 0.3s ease;
+    }
+
+    .world-card:hover {
+      border-color: var(--yezi-moss-base);
+    }
+
+    .world-card h3 {
+      color: var(--yezi-ink);
+      font-size: 1.6rem;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+    }
+
+    .world-card p {
+      margin-top: 14px;
+      color: var(--yezi-text);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .world-tag {
+      margin-top: 32px;
+      align-self: flex-start;
+      padding: 6px 14px;
+      background: var(--yezi-canvas);
+      border: 1px solid var(--line-subtle);
+      border-radius: 999px;
+      color: var(--yezi-moss-base);
+      font-size: 0.8rem;
+      font-weight: 650;
+    }
+
+    /* --- Promise Section (Striking Transition) --- */
+    .promise-card {
+      padding: 80px;
+      background: var(--yezi-moss-dark);
+      color: #fff;
+      border-radius: calc(var(--radius-premium) + 8px);
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .promise-title {
+      font-size: clamp(2.5rem, 4.5vw, 4.2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+
+    .promise-copy {
+      border-left: 2px solid rgba(255, 255, 255, 0.15);
+      padding-left: 40px;
+    }
+
+    .promise-copy p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.15rem;
+      line-height: 1.7;
+    }
+
+    .promise-copy p + p { margin-top: 24px; }
+
+    /* --- Core Stage CTA Section --- */
+    .stage-cta {
+      padding: 140px 0;
+      background: #070e0a; /* 极深墨色，沉静、高级 */
+      color: #fff;
+      text-align: center;
+      border-bottom: none;
+    }
+
+    .stage-cta-inner {
+      max-width: 800px;
+      margin-inline: auto;
+    }
+
+    .stage-cta h2 {
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #fff;
+    }
+
+    .stage-cta p {
+      margin-top: 24px;
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 400;
+    }
+
+    .stage-cta .button {
+      margin-top: 48px;
+      background: #fff;
+      color: #070e0a;
+      border-color: #fff;
+    }
+
+    .stage-cta .button:hover {
+      background: var(--yezi-amber-soft);
+      border-color: var(--yezi-amber-soft);
+    }
+
+    /* --- Footer --- */
+    footer {
+      padding: 48px 0;
+      background: #070e0a;
+      color: rgba(255, 255, 255, 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+    }
+
+    /* --- Responsive System --- */
+    @media (max-width: 1024px) {
+      .hero-grid, .belief-layout, .worlds-layout, .promise-card {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .worlds-layout .section-head { position: static; }
+      .principles-grid { grid-template-columns: 1fr; }
+      .promise-copy { border-left: none; padding-left: 0; }
+    }
+
+    @media (max-width: 768px) {
+      .container { width: min(100% - 40px, var(--max-width)); }
+      .nav-links { display: none; } /* Mobile simplicity */
+      section { padding: 80px 0; }
+      .manifest-card, .belief-main, .belief-aside, .promise-card { padding: 32px; }
+      .stage-cta { padding: 100px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#top" aria-label="YEZI Home">YEZI</a>
+      <ul class="nav-links">
+        <li><a href="#belief">Our Essence</a></li>
+        <li><a href="#principles">The Principles</a></li>
+        <li><a href="#worlds">Play Worlds</a></li>
+        <li><a href="#promise">The Balance</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="top">
+    
+    <section class="hero" aria-label="Introduction">
+      <div class="container hero-grid">
+        <div>
+          <span class="hero-tagline">The Art of Pure Childhood</span>
+          <h1 class="hero-title">Toys built for real childhood.</h1>
+          <p class="hero-copy">We create tactile, enduring playthings designed for rhythm, motion, tactile imagination, and everyday discovery.</p>
+          <div class="hero-actions">
+            <a class="button" href="#worlds">Enter the Play Worlds</a>
+            <a class="button secondary" href="#belief">Read Our Essence</a>
+          </div>
+        </div>
+
+        <aside class="manifest-card">
+          <p class="manifest-quote">For children who move, create, fail elegantly, and laugh with their entire being.</p>
+          <ul class="manifest-list">
+            <li>Honest materials made for unrefined family life.</li>
+            <li>Incredibly simple to love, stubborn enough to last.</li>
+            <li>Designed with intellectual rigor parents naturally trust.</li>
+          </ul>
+          <div class="manifest-meta">EST. 2018 — Object of Play</div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="belief" class="belief" aria-labelledby="belief-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">01 / Our Essence</span>
+          <h2 id="belief-title" class="section-title">Play should feel entirely alive.</h2>
+          <p class="section-lede">Not over-conceptualized. Not over-explained. Just pure, repeatable invitations to authentic sensory wonder.</p>
+        </div>
+
+        <div class="belief-layout">
+          <article class="belief-main">
+            <h3 class="belief-statement">A great toy does not dictate how a child should feel. It sets the stage for resonance, rhythm, and resilience.</h3>
+            <p class="belief-p">YEZI forms tangible companions for that precise slice of life — beautifully restrained objects that withstand the glorious chaos of growing up.</p>
+            <div class="belief-badge">Less Noise. Deeper Vitality.</div>
+          </article>
+
+          <aside class="belief-aside">
+            <p>We craft for an active, musical, and inherently curious childhood — the raw magic that unfolds on living room rugs, in overgrown backyards, and along water edges where imagination leaves no trace.</p>
+            <div class="belief-aside-accent"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="principles" aria-labelledby="principles-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">02 / The Design Principles</span>
+          <h2 id="principles-title" class="section-title">Three quiet ideas that shape every object.</h2>
+          <p class="section-lede">A disciplined framework ensures our voice remains clear: unadorned joy for the child, uncompromising integrity for the home.</p>
+        </div>
+
+        <div class="principles-grid">
+          <article class="principle-card">
+            <span class="principle-num">01 // INTUITIVE</span>
+            <h3>Joyful by nature.</h3>
+            <p>An object from YEZI is effortless to enter yet difficult to leave. It greets a child not with commands, but with an open-ended smile of curiosity.</p>
+          </article>
+
+          <article class="principle-card">
+            <span class="principle-num">02 // RESILIENT</span>
+            <h3>Built for real friction.</h3>
+            <p>Children do not negotiate with objects. Our toys are engineered to embrace the velocity of active hands, outdoor dampness, and multi-generational friction.</p>
+          </article>
+
+          <article class="principle-card">
+            <span class="principle-num">03 // EVOLVING</span>
+            <h3>Designed to grow.</h3>
+            <p>True play scales alongside the human spirit — quietly anchoring a child's coordination, personal confidence, and quiet moments of shared family memory.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="worlds" aria-labelledby="worlds-title">
+      <div class="container worlds-layout">
+        <div class="section-head">
+          <span class="section-label">03 / The Play Worlds</span>
+          <h2 id="worlds-title" class="section-title">A highly curated universe.</h2>
+          <p class="section-lede">Rather than endless variants, YEZI clusters its expressions around four primary kinetic impulses.</p>
+        </div>
+
+        <div class="world-grid">
+          <article class="world-card">
+            <div>
+              <h3>Acoustics</h3>
+              <p>Tactile instruments designed to reveal tone, resonance, and the distinct pride of self-made rhythm for those they love.</p>
+            </div>
+            <span class="world-tag">The Solid Wood Ukulele</span>
+          </article>
+
+          <article class="world-card">
+            <div>
+              <h3>Kinetics</h3>
+              <p>Precision-controlled vehicles crafted for diverse topography, speed, and the open-air energy that turns an ordinary afternoon into an epic.</p>
+            </div>
+            <span class="world-tag">All-Terrain Expedition Trucks</span>
+          </article>
+
+          <article class="world-card">
+            <div>
+              <h3>Hydro-Play</h3>
+              <p>Vessels designed for fluid dynamics, expansive runtime, and the deep satisfaction of watching intentional design carve through open water.</p>
+            </div>
+            <span class="world-tag">High-Endurance RC Boats</span>
+          </article>
+
+          <article class="world-card">
+            <div>
+              <h3>Narratives</h3>
+              <p>Architectural scenarios and rescue archetypes that subtly translate logic, hand-eye coordination, and tactical empathy into real-world play.</p>
+            </div>
+            <span class="world-tag">Prototypical Adventure Sets</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="promise" aria-labelledby="promise-title">
+      <div class="container">
+        <div class="promise-card">
+          <h2 id="promise-title">
+            Loved by hands.<br>
+            Trusted by minds.<br>
+            Ready for what's next.
+          </h2>
+          <div class="promise-copy">
+            <p>Every single YEZI object must answer a singular double-sided query: Does it spark unprompted desire in a child, and does it bring aesthetic and emotional peace to the parents' space?</p>
+            <p>That is the precise equilibrium we pursue — toys with enough wild soul for childhood and enough quiet restraint for the modern home.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage-cta" aria-labelledby="cta-title">
+      <div class="stage-cta-inner container">
+        <h2 id="cta-title">For Every Stage, Every Age.</h2>
+        <p>Acoustics, kinetics, water, and deep narratives — precisely balanced to mature with them, drawing families back into the art of shared adventure.</p>
+        <a class="button" href="#worlds">View the Curated Objects</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-logo">YEZI</div>
+      <p>&copy; 2026 YEZI. Sparking vitality through disciplined play.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
